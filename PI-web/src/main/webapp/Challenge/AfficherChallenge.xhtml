@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrought"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="pageTitle">Challenge</ui:define>
+	<ui:define name="pageContent">
+		<div class="row">
+			<div class="box">
+				<h:body>
+					<h:form>
+						<p:tabView>
+							<p:tab title="Available challenge" >
+								<h:form>
+									<h:panelGrid columns="2">
+
+											<h:commandButton id="oui" action="#{chbean.Participate()}"
+												value="Participate">
+												<f:setPropertyActionListener value="#{authB.user}"
+													target="#{chbean.user}"></f:setPropertyActionListener>
+											</h:commandButton>
+											<h:commandButton id="non"
+												action="#{chbean.NeParticipatePlus()}"
+												value="No longer participate">
+												<f:setPropertyActionListener value="#{authB.user}"
+													target="#{chbean.user}"></f:setPropertyActionListener>
+											</h:commandButton>
+										<h:outputLabel value="Name of challenge: " />
+										<h:outputLabel value="#{chbean.c.name}" />
+										<h:outputLabel value="Nombre of Participant: " />
+										<h:outputLabel value="#{chbean.NbrParticipants()}" />
+										<h:outputLabel value="Start Date: " />
+										<h:outputLabel value="#{chbean.c.dateDebut}" />
+										<h:outputLabel value="End Date: " />
+										<h:outputLabel value="#{chbean.c.dateFin}" />
+										<h:outputLabel value="Description: " />
+										<h:outputLabel value="#{chbean.c.description}" />
+
+										<h:commandButton value="list of particpants">
+											<f:setPropertyActionListener value="#{chbean.c}"
+												target="#{chbean.c}" />
+											<f:setPropertyActionListener value="true"
+												target="#{chbean.displayForm}"></f:setPropertyActionListener>
+										</h:commandButton>
+
+									</h:panelGrid>
+								</h:form>
+
+								<h:form rendered="#{chbean.displayForm}">
+									<h:dataTable value="#{chbean.ListParticipant()}" var="u">
+										<h:column>
+											<f:facet name="header">
+												<h:outputText value="Name" />
+											</f:facet>
+											<h:outputText value="#{u.user.login}" />
+										</h:column>
+										<h:column>
+											<f:facet name="header">
+												<h:outputText value="Note" />
+											</f:facet>
+											<h:outputText value="#{u.note}" />
+										</h:column>
+									</h:dataTable>
+								</h:form>
+							</p:tab>
+						</p:tabView>
+
+					</h:form>
+				</h:body>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

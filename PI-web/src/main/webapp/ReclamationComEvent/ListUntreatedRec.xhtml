@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/DashAdmin/Home.xhtml" 
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:jsf="http://xmlns.jcp.org/jsf"
+	  xmlns:pt="http://xmlns.jcp.org/jsf/passthrought">
+	  
+	  <ui:define name="content">
+	<h:form id="form1">
+
+	   
+			<f:event listener="#{reccomeBean.GetClaimUnTraited()}" type="preRenderView"></f:event>
+		
+	
+
+<h:dataTable value="#{reccomeBean.reclamations}" var="x" class="table table-striped table-advance table-hover">
+
+<f:facet name="header">
+	<h:outputText value="list of reclamations not traited : " />
+</f:facet>
+	<h:column>
+				<f:facet name="header">
+					<h:outputText value="Object : " />
+				</f:facet>
+				<h:outputText value="#{x.objet}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Contents : " />
+				</f:facet>
+				<h:outputText value="#{x.contenue}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Reclamtion Date : " />
+				</f:facet>
+				<h:outputText value="#{x.datereclamation}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Reclamtion State : " />
+				</f:facet>
+				<h:outputText value="#{x.etat}" />
+			</h:column>
+    
+    
+<h:column>
+    <h:panelGroup class="action" >
+  <h:commandLink actionListener="#{reccomeBean.traiterClaim(x)}" action="ListRecComEvent"   outcome="" value="Change Rec State" includeViewParams="true">
+<!--   <f:param name="id claim" value="#{x.id}"></f:param> -->
+	       			</h:commandLink>
+	       			</h:panelGroup>
+	       			
+	       			
+    </h:column>
+
+
+
+</h:dataTable>
+
+
+</h:form>
+</ui:define>
+</ui:composition>

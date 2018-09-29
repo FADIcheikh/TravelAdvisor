@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
+<h:body> 
+<h:form>
+<h:panelGrid columns="2">
+			<h:outputLabel value="Name" />
+			<h:inputText value="#{chbean.c.name}" />
+			<h:outputLabel value="Description" />
+			<h:inputTextarea value="#{chbean.c.description}" />
+					<!-- start Date -->
+			<p:growl id="msgs" showDetail="true" />
+			
+				<p:outputLabel value="Start Date" />
+				<p:calendar id="datetime" value="#{chbean.c.dateDebut}"
+					pattern="MM/dd/yyyy HH:mm:ss" />
+				
+			<!-- dateFin -->
+			<p:growl id="msgs1" showDetail="true" />
+			
+				<p:outputLabel value="End Date" />
+				<p:calendar id="datetime1" value="#{chbean.c.dateFin}"
+					pattern="MM/dd/yyyy HH:mm:ss" />
+			
+
+			
+			
+<h:commandButton action="#{chbean.AjouterChallenge()}" value="Add" />
+</h:panelGrid>
+</h:form>
+</h:body> 
+</html>

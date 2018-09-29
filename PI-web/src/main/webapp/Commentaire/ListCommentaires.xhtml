@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:p="http://primefaces.org/ui"> 
+
+
+
+<h:form>
+
+	 <p:dataScroller value="#{commentaireBean.coms}" var="comz" chunkSize="10">
+		<f:facet name="header">
+            Comments
+        </f:facet>
+        
+        <p:fieldset legend="#{comz.user.login}" toggleable="true" toggleSpeed="500">
+        <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}" />
+       
+        <h:panelGrid columns="15" cellpadding="5" style="margin-left:800px">
+            <h:outputLabel for="ajax" value="Added On:" style="font-style: italic" />
+            <h:outputText value="#{comz.id.dateCommentaire}"/>
+            </h:panelGrid>
+            
+        <h:panelGrid columns="2" cellpadding="5" style="margin-bottom:20px">
+                      <h:outputText value="#{comz.commentaire}" style="font-weight:bold"/>
+            </h:panelGrid>
+            
+           
+            
+            	<h:commandButton action="#{commentaireBean.DoDisplayUpdate()}"
+				value="Edit">
+
+				<f:setPropertyActionListener value="#{comz}"
+					target="#{commentaireBean.comModif}" />
+			</h:commandButton>
+			
+			<h:commandButton action="#{commentaireBean.DoRemove()}"
+				value="Remove">
+
+				<f:setPropertyActionListener value="#{comz}"
+					target="#{commentaireBean.comModif}" />
+			</h:commandButton>
+			
+			<h:commandButton 
+				value="Réclamer">
+
+				<f:setPropertyActionListener value="#{comz}"
+					target="#{commentaireBean.comModif}" />
+			</h:commandButton>
+			
+		 </p:fieldset>
+
+		</p:dataScroller>
+		
+		<h:commandButton action="#{commentaireBean.DoNew()}"
+		 value="Add Commentaire" />
+	
+</h:form>
+</html>

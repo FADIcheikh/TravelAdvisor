@@ -1,0 +1,70 @@
+  <ui:composition template="/DashAdmin/Home.xhtml" 
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:jsf="http://xmlns.jcp.org/jsf"
+	  xmlns:pt="http://xmlns.jcp.org/jsf/passthrought">
+    
+    <ui:define name="metadata">
+	    <f:metadata>
+			<f:event listener="#{touristicPlaceBean.loadTouristicplaces}" type="preRenderView"></f:event>
+		</f:metadata>
+	</ui:define>
+	
+    <ui:define name="title">Main Page</ui:define>
+	
+	<ui:define name="content">
+		<h:messages globalOnly="true" errorStyle="color: red" infoStyle="color: green" layout="table" />
+		<H1>Touristicplace List</H1>
+		
+		<h:form id="form">
+    <p:dataGrid var="touristicplace" value="#{touristicPlaceBean.touristicplaceList}" columns="3" layout="grid"
+        rows="12" paginator="true" id="touristicplace"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="6,12,16">
+ 
+        <f:facet name="header">
+            Touristicplace
+        </f:facet>
+ 
+        <p:panel header="#{touristicplace.idTouristicPlaces}" style="text-align:center">
+            <h:panelGrid columns="1" style="width:100%">
+                <p:graphicImage  name="savedImages/#{touristicplace.touristicPlaceImage}" />
+ 
+                <h:outputText value="#{touristicplace.nameTouristicPlace}" />
+ 
+                <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail">
+                    <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
+                    <f:setPropertyActionListener value="#{touristicplace}" target="#{touristicPlaceBean.touristicplace}" />
+                </p:commandLink>
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+ 
+    <p:dialog header="touristicplace Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="carDetail" style="text-align:center;">
+            <p:panelGrid  columns="2" rendered="#{not empty touristicPlaceBean.touristicplaceList}" columnClasses="label,value">
+                <f:facet name="header">
+                 
+                </f:facet>
+ 
+                <h:outputText value="Id:" />
+                <h:outputText value="#{touristicPlaceBean.touristicplace.idTouristicPlaces}" />
+ 
+                <h:outputText value="name" />
+                <h:outputText value="#{touristicPlaceBean.touristicplace.nameTouristicPlace}" />
+ 
+                <h:outputText value="Country:" />
+                <h:outputText value="#{touristicPlaceBean.touristicplace.country}" style="color:#{touristicPlaceBean.touristicplace.country}"/>
+ 
+                <h:outputText value="delegation" />
+                <h:outputText value="#{touristicPlaceBean.touristicplace.delegation}" />
+            </p:panelGrid>
+        </p:outputPanel>
+    </p:dialog>
+</h:form>
+			</ui:define>
+</ui:composition>

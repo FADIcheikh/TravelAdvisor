@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/DashAdmin/Home.xhtml" 
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui">
+
+<ui:define name="content">
+	<h:form id="form1">
+
+	
+   <h:graphicImage value="" />
+			<f:facet name="header">
+				<h:outputText value="Here it is the liste of users" />
+			</f:facet>
+
+<h:form id="form_login" class="login-form" action="index.html">	  
+        <div class="login-wrap">
+            
+            
+            <h:panelGrid columns="2" cellpadding="0">
+				<h:outputText value="Please enter the login : " />
+				<h:inputText value="#{UserBean.login}" />
+	
+			
+			<p:growl id="growl" life="2000" />
+			<p:commandButton value="Search" id="ajax" update="growl" action="#{UserBean.doSearch()}" styleClass="ui-priority-primary" />
+			<h:messages styleClass="error"/>
+			</h:panelGrid>
+				
+            
+        </div>
+      </h:form>
+
+			<h:dataTable value="#{UserBean.lstuser}" var="p" class="table table-striped table-advance table-hover">
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Full Name" />
+				</f:facet>
+				<h:outputText value="#{p.fullName}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Role" />
+				</f:facet>
+				<h:outputText value="#{p.type}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="UserName" />
+				</f:facet>
+				<h:outputText value="#{p.login}" />
+			</h:column>
+									
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Gender" />
+				</f:facet>
+				<h:outputText value="#{p.gender}" />
+			</h:column>
+		
+	
+	
+		</h:dataTable>
+	</h:form>
+
+	</ui:define>
+</ui:composition>

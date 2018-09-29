@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+	
+<h:body> 
+
+<h:form id="form1">
+		<h:dataTable value="#{chbean.meschallengs}" var="ch" border="1">
+
+			<f:facet name="header">
+				<h:outputText value="list of challengs" />
+			</f:facet>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Name" />
+				</f:facet>
+				<h:outputText value="#{ch.name}" />
+			</h:column>
+
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Description" />
+				</f:facet>
+				<h:outputText value="#{ch.description}" />
+			</h:column>
+
+
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Start date" />
+				</f:facet>
+				<h:outputText value="#{ch.dateDebut}" />
+			</h:column>
+
+
+
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="End Date" />
+				</f:facet>
+				<h:outputText value="#{ch.dateFin}" />
+			</h:column>
+
+
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="action" />
+				</f:facet>
+
+
+          <h:commandButton action="/Challenge/AfficherChallenge.jsf" value="view" >
+         <f:setPropertyActionListener value="#{ch}" target="#{chbean.c}"></f:setPropertyActionListener>
+         </h:commandButton>
+			</h:column>
+
+		</h:dataTable>
+	</h:form>
+</h:body> 
+</html>
+

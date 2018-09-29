@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrought"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      template="/DashAdmin/Loginn.xhtml"
+      xmlns:p="http://primefaces.org/ui"> 
+<h:head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="HoussemAyari"/>
+    <meta name="keyword" content="Travel , Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal"/>
+    <link rel="shortcut icon" href="img/favicon.png"/>
+	<title>Login Page | Travel and Trip Advicer</title>
+    
+
+    <!-- Bootstrap CSS -->    
+	<h:outputStylesheet library="cssAdmin" name="bootstrap.min.css" ></h:outputStylesheet>
+    <!-- bootstrap theme -->
+	<h:outputStylesheet library="cssAdmin" name="bootstrap-theme.css"></h:outputStylesheet>
+    <!--external css-->
+    <!-- font icon -->
+	<h:outputStylesheet library="cssAdmin" name="elegant-icons-style.css"></h:outputStylesheet>
+	<h:outputStylesheet library="cssAdmin" name="font-awesome.css"></h:outputStylesheet>
+
+    <!-- Custom styles -->
+	<h:outputStylesheet library="cssAdmin" name="style.css"></h:outputStylesheet>
+	<h:outputStylesheet library="cssAdmin" name="style-responsive.css"></h:outputStylesheet>
+
+
+    
+</h:head>
+
+  <h:body class="login-img3-body">
+
+    <div class="container">
+
+         
+		<h:form id="form_login" class="login-form" action="index.html">	  
+        <div class="login-wrap">
+            <p class="login-img"><i class="icon_lock_alt"></i></p>
+            
+            <h:panelGrid columns="2" cellpadding="0">
+				<h:outputText value="Login : " />
+				<h:inputText value="#{authB.user.login}" />
+			
+				
+			
+				<h:outputText value="Password : " />
+        		<p:password id="feedback" value="#{authB.user.password}" feedback="true" />
+        		
+				
+			
+			<p:growl id="growl" life="2000" />
+            <p:commandButton value="Login" id="withIcon" action="#{authB.doLogin()}" update="growl" icon="ui-icon-disk" />
+			<h:messages styleClass="error"/>
+			</h:panelGrid>
+				
+            
+        </div>
+      </h:form>
+    
+    </div>
+
+
+  </h:body>
+</html>

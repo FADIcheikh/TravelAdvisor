@@ -1,0 +1,43 @@
+<ui:composition template="/DashAdmin/Home.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrought">
+	<ui:define name="content">
+
+		<f:metadata>
+			<f:event listener="#{touristicPlaceBean.showOffer}"
+				type="preRenderView"></f:event>
+		</f:metadata>
+	</ui:define>
+
+	<ui:define name="title">Main Page</ui:define>
+
+	<ui:define name="content">
+		<h:messages globalOnly="true" errorStyle="color: red"
+			infoStyle="color: green" layout="table" />
+		<H1>Offre name List</H1>
+
+		<h:form id="form1">
+			<h:dataTable id="touristicplaces-table" class="table table-striped table-advance table-hover"
+				value="#{touristicPlaceBean.offers}"
+				var="offre" >
+
+				<f:facet name="header">
+					<h:outputText value="Touristicplace List" />
+				</f:facet>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="idTouristicPlaces" />
+					</f:facet>
+					<h:outputText value="#{offre.nameOffer}" />
+				</h:column>
+
+			</h:dataTable>
+		
+		</h:form>
+	</ui:define>
+</ui:composition>

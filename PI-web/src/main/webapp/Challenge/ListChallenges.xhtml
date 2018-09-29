@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/DashAdmin/Home.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+
+
+
+		<h:graphicImage value="" />
+		<f:facet name="header">
+			<h:outputText value="Here it is the liste of challenge" />
+		</f:facet>
+
+		<h:form>
+			<h:inputText value="#{chbean.ch}" name="search" />
+			<h:commandButton action="#{chbean.findName()}" value="search"
+				icon="ui-icon-disk">
+				<f:param name="nameAuc" value="#{chbean.ch}"></f:param>
+			</h:commandButton>
+			<h:messages styleClass="error" />
+			<h:commandLink action="#{chbean.newChallenge()}"
+				value="Or Add a new challenge" />
+			<br />
+			<br />
+			<h:dataTable value="#{chbean.challengs}" var="ch"
+				class="table table-striped table-advance table-hover">
+
+				<f:facet name="header">
+					<h:outputText value="list of challengs" />
+									
+				<h:commandButton action="#{chbean.ReturnToList()}" value="Refresh"
+					icon="ui-icon-disk">
+				</h:commandButton>
+				</f:facet>
+
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Name" />
+					</f:facet>
+					<h:outputText value="#{ch.name}" />
+				</h:column> 
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Description" />
+					</f:facet>
+					<h:outputText value="#{ch.description}" />
+				</h:column>
+
+
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Start date" />
+					</f:facet>
+					<h:outputText value="#{ch.dateDebut}" />
+				</h:column>
+
+
+
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="End Date" />
+					</f:facet>
+					<h:outputText value="#{ch.dateFin}" />
+				</h:column>
+
+
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="action" />
+					</f:facet>
+
+
+					<h:commandButton value="Choisir">
+						<f:setPropertyActionListener value="#{ch}" target="#{chbean.c}" />
+						<f:setPropertyActionListener value="true"
+							target="#{chbean.displayForm}"></f:setPropertyActionListener>
+					</h:commandButton>
+				</h:column>
+
+
+
+
+			</h:dataTable>
+		</h:form>
+		<h:form rendered="#{chbean.displayForm}">
+			<h:panelGrid columns="2" cellpadding="5">
+
+				<p:outputLabel for="Name" value="Name" />
+				<p:inputText id="Name" value="#{chbean.c.name}" />
+
+				<p:outputLabel for="Description" value="Description" />
+				<p:inputTextarea rows="6" cols="33" id="Description"
+					value="#{chbean.c.description}" />
+
+				<p:outputLabel for="Datedebut" value="Date Debut:" />
+				<p:calendar id="Datedebut" value="#{chbean.c.dateDebut}"
+					pattern="MM/dd/yyyy" />
+
+				<p:outputLabel for="DateFin" value="Date Fin:" />
+				<p:calendar id="DateFin" value="#{chbean.c.dateFin}" />
+
+				<h:column>
+					<h:commandButton actionListener="#{chbean.doSave()}" value="add" />
+					<h:commandButton actionListener="#{chbean.doUpdate()}"
+						value="update" />
+					<h:commandButton actionListener="#{chbean.doDelete()}"
+						value="delete" />
+				</h:column>
+			</h:panelGrid>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

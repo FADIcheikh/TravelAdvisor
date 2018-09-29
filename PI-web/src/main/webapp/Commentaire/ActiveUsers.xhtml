@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/DashAdmin/Home.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+
+
+
+		<h:graphicImage value="" />
+		<f:facet name="header">
+			<h:outputText value="Active users" />
+		</f:facet>
+
+		<h:form>
+
+			<p:dataTable value="#{backCommentaireBean.activeUsers}" var="uzerz">
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value=" Nom " />
+					</f:facet>
+					<h:outputText value="#{uzerz.firstName}" />
+
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Prenom" />
+					</f:facet>
+					<h:outputText value="#{uzerz.lastName}" />
+
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Date De Naissance" />
+					</f:facet>
+					<h:outputText value="#{uzerz.birthDate}" />
+
+				</p:column>
+
+			</p:dataTable>
+			</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,99 @@
+
+<ui:composition template="/DashAdmin/Home.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrought">
+	<ui:define name="content">
+
+		<f:metadata>
+			<f:event listener="#{touristicPlaceBean.loadTouristicplaces}"
+				type="preRenderView"></f:event>
+		</f:metadata>
+	</ui:define>
+
+	<ui:define name="title">Main Page</ui:define>
+
+	<ui:define name="content">
+		<h:messages globalOnly="true" errorStyle="color: red"
+			infoStyle="color: green" layout="table" />
+		<H1>Touristicplace List</H1>
+
+		<h:form>
+			<p:inputText id="name" value="#{touristicPlaceBean.name}" required="true"
+				requiredMessage="Value needed" />
+			<p:commandButton value="search"
+				action="#{touristicPlaceBean.findName}" id="search" ajax="false" />
+		</h:form>
+
+
+
+		<h:form id="form1">
+			<h:dataTable id="touristicplaces-table" class="table table-striped table-advance table-hover"
+				value="#{touristicPlaceBean.touristicplaceList}"
+				var="touristicplace" >
+
+				<f:facet name="header">
+					<h:outputText value="Touristicplace List" />
+				</f:facet>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="idTouristicPlaces" />
+					</f:facet>
+					<h:outputText value="#{touristicplace.idTouristicPlaces}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="nameTouristicPlace" />
+					</f:facet>
+					<h:outputText value="#{touristicplace.nameTouristicPlace}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="country" />
+					</f:facet>
+					<h:outputText value="#{touristicplace.country}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="delegation" />
+					</f:facet>
+					<h:outputText value="#{touristicplace.delegation}" />
+
+				</h:column>
+
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Action" />
+					</f:facet>
+					<h:panelGroup class="action">
+						<h:commandLink value="Delete"
+							action="#{touristicPlaceBean.deleteTouristicplace(touristicplace)}" />
+
+						<h:link outcome="view" value="View" includeViewParams="true">
+							<f:param name="idTouristicPlaces"
+								value="#{touristicplace.idTouristicPlaces}"></f:param>
+						</h:link>
+
+						<h:link outcome="edit" value="Edit" includeViewParams="true">
+							<f:param name="idTouristicPlaces"
+								value="#{touristicplace.idTouristicPlaces}"></f:param>
+						</h:link>
+
+					</h:panelGroup>
+				</h:column>
+
+			</h:dataTable>
+			<h:panelGrid styleClass="navTable">
+				<h:link outcome="create" value="Create New Touristicplace" />
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

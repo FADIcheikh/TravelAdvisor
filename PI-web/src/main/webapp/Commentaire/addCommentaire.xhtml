@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+</h:head> 
+<body> 
+
+	<h:form rendered="#{commentaireBean.formDisplayed}">
+
+		<h:panelGrid>
+			<p:inputTextarea value="#{commentaireBean.com.commentaire}" rows="5" cols="30" counter="display" maxlength="255" counterTemplate="{0} characters remaining." autoResize="false" />
+    <h:outputText id="display" />
+		</h:panelGrid>
+		
+		<h:commandButton action="#{commentaireBean.DoCancel()}" value="Cancel" />
+		<h:commandButton action="#{commentaireBean.DoSave()}" value="Add" >
+		<f:setPropertyActionListener value="#{authB.user}" target="#{commentaireBean.u}"></f:setPropertyActionListener>
+		</h:commandButton>
+</h:form>
+
+
+
+</body> 
+</html>

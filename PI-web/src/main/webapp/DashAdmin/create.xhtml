@@ -1,0 +1,54 @@
+
+    <ui:composition template="/DashAdmin/Home.xhtml" 
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:jsf="http://xmlns.jcp.org/jsf"
+	  xmlns:pt="http://xmlns.jcp.org/jsf/passthrought">
+    <ui:define name="title">Main Page</ui:define>
+    
+    <ui:define name="metadata">
+	    <f:metadata>
+			<f:event listener="#{touristicPlaceBean.clearTouristicplaces}" type="preRenderView"></f:event>
+		</f:metadata>
+	</ui:define>
+	
+	<ui:define name="content">
+		<h:messages globalOnly="true" errorStyle="color: red" infoStyle="color: green" layout="table" />
+		<H1>Create Touristicplace</H1>
+		
+		<h:form enctype="multipart/form-data">
+		   	<h:panelGrid styleClass="createTable" columns="3" cellpadding="4" cellspacing="0">
+		   		
+		   		<h:outputLabel for="nameTouristicPlace">Name:</h:outputLabel>
+	   			<h:inputText id="nameTouristicPlace" size="45" value="#{touristicPlaceBean.touristicplace.nameTouristicPlace}" 
+	   						 required="true" requiredMessage="Name is required"/>
+	   			<h:message for="nameTouristicPlace" style="color:red"/>
+	   			
+	   			<h:outputLabel for="country">country:</h:outputLabel>
+	   			<h:inputText id="country" size="45"  value="#{touristicPlaceBean.touristicplace.country}" 
+	   						 required="true" requiredMessage="country is required"/>
+	   			<h:message for="country" style="color:red"/>
+	   			
+	   			<h:outputLabel for="delegation">delegation:</h:outputLabel>
+	   			<h:inputText id="delegation" size="45" value="#{touristicPlaceBean.touristicplace.delegation}" 
+	   			required="true" requiredMessage="delegation is required" />
+	   			<h:message for="delegation" style="color:red"/>
+	   			
+	   			<h:outputLabel for="touristicPlaceImage">Image:</h:outputLabel>
+	   			<h:inputFile id="file" value="#{touristicPlaceBean.touristicplace.file}"></h:inputFile>
+	   			<br /><br /><br />
+	   		
+	   			
+	   			<h:commandButton action="#{touristicPlaceBean.createTouristicplace}" value="Create Touristicplaces" />
+	   		</h:panelGrid>
+	   		
+	   		<h:panelGrid styleClass="navTable">
+	   			<h:link outcome="index" value="List Touristicplaces" />
+	   		</h:panelGrid>
+	   	</h:form>
+	   
+	</ui:define>
+</ui:composition>

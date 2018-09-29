@@ -1,0 +1,55 @@
+
+    <ui:composition template="/DashAdmin/Home.xhtml" 
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:jsf="http://xmlns.jcp.org/jsf"
+	  xmlns:pt="http://xmlns.jcp.org/jsf/passthrought">
+    
+    <ui:define name="metadata">
+	    <f:metadata>
+			<f:viewParam name="idTouristicPlaces" value="#{touristicPlaceBean.touristicplace.idTouristicPlaces}" />
+			<f:event listener="#{touristicPlaceBean.findTouristicplace}" type="preRenderView"></f:event>
+		</f:metadata>
+	</ui:define>
+    
+    <ui:define name="content">
+    	
+    	<h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+        <h1>TouristicPlaces Details</h1>
+        
+    	<h:form>
+	    	<h:panelGrid columns="2" 
+	    				 rules="all" 
+	    				 styleClass="viewTable" 
+	    				 columnClasses="column1, column2" 
+       					 rowClasses="oddRow, evenRow" 
+	    				 cellspacing="0" 
+	    				 cellpadding="2" >
+	    				    		
+	    		<h:outputText value="idTouristicPlaces:" />    		
+	    		<h:outputText value="#{touristicPlaceBean.touristicplace.idTouristicPlaces}"/>
+	    		<h:outputText value="nameTouristicPlace:"  />
+	    		<h:outputText value="#{touristicPlaceBean.touristicplace.nameTouristicPlace}" />
+	    		<h:outputText value="country:"  />
+	    		<h:outputText value="#{touristicPlaceBean.touristicplace.country}" />
+	    		<h:outputText value="delegation:"  />
+	    		<h:outputText value="#{touristicPlaceBean.touristicplace.delegation}" />
+	    	
+	    		
+	    	</h:panelGrid>
+	    	  	<h:commandButton action="#{touristicPlaceBean.deleteTouristicplace(touristicPlaceBean.touristicplace)}" value="Destroy" />
+	    	
+	    	<h:panelGrid styleClass="navTable">
+	    		<h:link outcome="edit" value="Edit" includeViewParams="true">
+       				<f:param name="idTouristicPlaces" value="#{touristicPlaceBean.touristicplace.idTouristicPlaces}"></f:param>
+       			</h:link>
+       			<h:link outcome="create" value="Create New Touristicplace" />
+       			<h:link outcome="index" value="List Touristicplace" />
+       			
+	    	</h:panelGrid>
+    	</h:form>
+    </ui:define>
+</ui:composition>

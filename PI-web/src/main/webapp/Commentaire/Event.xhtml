@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrought"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="pageTitle">Event</ui:define>
+	<ui:define name="pageContent">
+		<div class="row">
+			<div class="box">
+				<h:body>
+					<h:form>
+						<p:tabView>
+							<p:tab title="Event">
+								<h:form>
+									<h:panelGrid columns="2">
+										<h:outputLabel value="Name of the event : " />
+										<h:outputLabel value="#{eventBean.e.nameEvent}" />
+										<h:outputLabel value="Description: " />
+										<h:outputLabel value="#{eventBean.e.description}" />
+										<h:outputLabel value="Start Date: " />
+										<h:outputLabel value="#{eventBean.e.startDateEvent}" />
+										<h:outputLabel value="End Date: " />
+										<h:outputLabel value="#{eventBean.e.endDateEvent}" />
+										<h:outputLabel value="Price: " />
+										<h:outputLabel value="#{eventBean.e.priceEvent}" />
+
+
+									</h:panelGrid>
+								</h:form>
+							</p:tab>
+						</p:tabView>
+
+					</h:form>
+					<ui:include src="/Commentaire/ListCommentaires.xhtml" />
+					<ui:include src="/Commentaire/addCommentaire.xhtml" />
+					<ui:include src="/Commentaire/UpdateCommentaire.xhtml" />
+				</h:body>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
